@@ -1,22 +1,26 @@
-import axios from "axios";
-import {useEffect,useState} from "react";
+import axios from 'axios'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import styles from '../styles/Home.module.css'
 
-const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
-
-function Home() {
-  const [quote, setQuote] = useState(null);
-
- useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setQuote(response.data);
-    });
-  }, []);
+function bruh() {
   
-  if (!quote) return null;
+}
 
+
+const Home: NextPage = () => {
+  let [quote,setQuote]=useState(null)
+  useEffect(()=>{
+    axios.get('https://jsonplaceholder.typicode.com/todos/1').then((res) => {
+      setQuote(res.data.title)
+    console.log(res.data.title)
+  })
+  })
   return (
     <div>
-      {quote.title}
+      {quote}
     </div>
   );
 }
