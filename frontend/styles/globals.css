@@ -1,37 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sansita&display=swap');
 
 body{
-    background: linear-gradient(90deg, #0b0b0b 0%, #1c2537 100%);
+    background-color: #272727;
     display: flex;
     min-height: 100vh;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2em;
+
+    
 }
 
 #__next{
     display:flex;
-    flex: 1 1;
+    flex: 1 1 auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
+
 .header{
-    flex:initial;
-    height: 20rem;
-    background-color: white;
+    
+    height: 5rem;
+    width: 100%;
+    display: flex;
 }
 
 .container{
     flex:1 ;
-    background-color: red;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
-.content{
-    flex:1;
+
+
+.right-header{
+    margin-left: auto;
+    padding: 1rem;
+}
+
+.left-header{
+    padding: 1rem;
 }
 
 
 
+
+.text-container{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
 .textarea{
     
-    background-color: rgba(0, 0, 0, 0); 
+    background-color: #2C3531;
     border-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 50%;
+    resize: none;
+    font-family: 'Sansita', sans-serif;
+    color: white;
+    border-radius: 12px;
+    font-size: large;
+    overflow: hidden;
+    box-shadow:5px 6px rgb(29, 29, 29);
     
+}
+
+
+.footer{
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+button{
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    border-radius: 12px;
+    background-color: #2C3531;
+    color: white;
+}
+
+a:visited,a:hover,a:active{
+    color: lightblue;
+
 }

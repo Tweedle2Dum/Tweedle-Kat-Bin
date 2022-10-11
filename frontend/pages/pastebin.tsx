@@ -8,14 +8,17 @@ import styles from '../styles/Pastebin.module.css'
 function Pastebin() {
     return (
         <>
-            <div className='Header'>ABC</div>
+            <div className='header'>
+                <div className='left-header'>TWEEDLE-CAT-BIN</div>
+                <div className='right-header'><button>SAVE</button></div>
+            </div>
             <div className='container'>
-                <div className='content'>
-                    
-                </div>
+                
+                    <TextArea></TextArea>
+                
 
             </div>
-            <div className='Footer'>ABC</div>
+            <div className='footer'>Link to repository:<a href='https://github.com/Tweedle2Dum/Tweedle-Kat-Bin.git'>Here</a></div>
         </>
     );
 }
