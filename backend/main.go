@@ -17,10 +17,13 @@ var entries = []Entry{
 
 func data(c *gin.Context) {
 	var entry Entry
+  
 
 	if c.Request.Method == "POST" {
 		if err := c.BindJSON(&entry); err != nil {
-			return
+			c.IndentedJSON(http.StatusCreated,gin.H{
+        "error":err,
+      })
 		}
 		entries = append(entries, entry)
 		c.IndentedJSON(http.StatusCreated, entry)
@@ -36,8 +39,26 @@ func ping(c *gin.Context) {
 		"message": "pong",
 	})
 }
+func CORSMiddleware() gin.HandlerFunc {
+    return func(c *gin.Context) {
+
+        c.Header("Access-Control-Allow-Origin", "*")
+        c.Header("Access-Control-Allow-Credentials", "true")
+        c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+        c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT")
+
+        if c.Request.Method == "OPTIONS" {
+            c.AbortWithStatus(204)
+            return
+        }
+
+        c.Next()
+    }
+}
+
 func main() {
 	r := gin.Default()
+	r.Use(CORSMiddleware())
 	r.GET("/", ping)
 	r.GET("data/", data)
 	r.POST("data/", data)
