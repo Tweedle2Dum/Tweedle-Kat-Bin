@@ -1,0 +1,11 @@
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.contentcard{
+    background-color:#2C3531 ;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 75%;
+}

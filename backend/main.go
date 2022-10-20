@@ -62,5 +62,6 @@ func main() {
 	r.GET("/", ping)
 	r.GET("data/", data)
 	r.POST("data/", data)
+	r.GET("")
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
