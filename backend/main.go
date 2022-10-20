@@ -13,6 +13,8 @@ type Entry struct {
 
 var entries = []Entry{
 	{Id: "1", Txt: "Hellow"},
+	{Id: "2", Txt: "fuck you"},
+	{Id: "3", Txt: "bye"},
 }
 
 func data(c *gin.Context) {
@@ -34,6 +36,11 @@ func data(c *gin.Context) {
 	}
 }
 
+func collection(c *gin.Context){
+	c.IndentedJSON(http.StatusOK,entries)
+
+
+}
 func ping(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"message": "pong",
@@ -62,6 +69,6 @@ func main() {
 	r.GET("/", ping)
 	r.GET("data/", data)
 	r.POST("data/", data)
-	r.GET("")
+	r.GET("collection/",collection)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

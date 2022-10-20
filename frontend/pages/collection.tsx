@@ -6,7 +6,7 @@ export default function collection(){
     axios.get('http://localhost:8080/collection/')
      .then((response)=>{
         console.log(response);
-        data = response.data;
+        data = JSON.parse(response.data);
      })
      .catch((error)=>{
         console.log(error);
@@ -16,7 +16,7 @@ export default function collection(){
     return (
         <>
         <div className={styles.header}>ALL THE PASTE'S ARE DISPLAYED HERE!!</div>
-        <div className={styles.contentcard}></div>
+        <div className={styles.contentcard}>{data}</div>
         </>
     );
 
