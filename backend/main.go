@@ -2,20 +2,33 @@ package main
 
 import (
 	"net/http"
-
+	"context"
+    "fmt"
+    "log"
+    "math/rand"
+    "time"
 	"github.com/gin-gonic/gin"
+	"os"
+	"github.com/cockroachdb/cockroach-go/v2/crdb/crdbgorm"
+    "github.com/google/uuid"
+    "gorm.io/driver/postgres"
+    "gorm.io/gorm"
 )
 
 type Entry struct {
 	Id  string `json:"id"`
 	Txt string `json:"txt"`
+	Uuid uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 }
+
 
 var entries = []Entry{
 	{Id: "1", Txt: "Hellow"},
 	{Id: "2", Txt: "fuck you"},
 	{Id: "3", Txt: "bye"},
 }
+
+
 
 func data(c *gin.Context) {
 	var entry Entry

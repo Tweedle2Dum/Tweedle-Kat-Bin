@@ -6,7 +6,7 @@ export default function collection(){
     axios.get('http://localhost:8080/collection/')
      .then((response)=>{
         console.log(response);
-        data = JSON.parse(response.data);
+        data = response.data.;
      })
      .catch((error)=>{
         console.log(error);
