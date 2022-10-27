@@ -2,37 +2,28 @@ package main
 
 import (
 	"net/http"
-	"context"
-    "fmt"
-    "log"
-    "math/rand"
-    "time"
-	"github.com/gin-gonic/gin"
 	"os"
+
 	"github.com/cockroachdb/cockroach-go/v2/crdb/crdbgorm"
-    "github.com/google/uuid"
-    "gorm.io/driver/postgres"
-    "gorm.io/gorm"
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"github.com/joho/godotenv"
+	"gorm.io/gorm"
 )
 
 type Entry struct {
-	Id  string `json:"id"`
+	Id  uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Txt string `json:"txt"`
-	Uuid uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 }
 
 
-var entries = []Entry{
-	{Id: "1", Txt: "Hellow"},
-	{Id: "2", Txt: "fuck you"},
-	{Id: "3", Txt: "bye"},
-}
+var ids []uuid.UUID
 
-
+func addData()
 
 func data(c *gin.Context) {
 	var entry Entry
-  
+	dotenv := os.Getenv("DB_URL")
 
 	if c.Request.Method == "POST" {
 		if err := c.BindJSON(&entry); err != nil {
@@ -40,7 +31,6 @@ func data(c *gin.Context) {
         "error":err,
       })
 		}
-		entries = append(entries, entry)
 		c.IndentedJSON(http.StatusCreated, entry)
 	}
 
@@ -77,6 +67,7 @@ func CORSMiddleware() gin.HandlerFunc {
 }
 
 func main() {
+	godotenv.Load()
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 	r.GET("/", ping)
