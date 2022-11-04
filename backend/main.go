@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"fmt"
 )
 
 type Entry struct {
@@ -46,6 +47,23 @@ func data(db *gorm.DB) gin.HandlerFunc {
 
 }
 
+func GetEntry(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		id := c.Params.ByName("id")
+ 		var entry Entry
+ 		if err := db.Where("id = ?", id).First(&entry).Error; err != nil {
+    	c.AbortWithStatus(404)
+    	fmt.Println(err)
+ } else {
+    c.IndentedJSON(200, gin.H{
+		"result": entry,
+	})
+ }
+
+	
+}
+}
+
 func ping(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"message": "pong",
@@ -82,5 +100,6 @@ func main() {
 	r.GET("/", ping)
 	r.GET("data/", data(db))
 	r.POST("data/", data(db))
+	r.GET("data/:id",GetEntry(db))
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
