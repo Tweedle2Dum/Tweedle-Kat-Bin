@@ -12,7 +12,7 @@ import (
 )
 
 type Entry struct {
-	Id  uint64 `gorm:"primary_key;auto_increment;not_null"`
+	Id  string `gorm:"primary_key;auto_increment;not_null"`
 	Txt string `json:"txt"`
 }
 

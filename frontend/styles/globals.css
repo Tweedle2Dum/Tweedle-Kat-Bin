@@ -77,3 +77,8 @@ form{
     justify-content: center;
     align-items: center;
 }
+
+.link{
+    margin-top: 3rem ;
+    margin-left: 25%;
+}
